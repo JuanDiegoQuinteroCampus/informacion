@@ -1,39 +1,130 @@
 <!-- 
-Unidades relativas
+FLEX
+La propiedad CSS flex es una propiedad resumida que indica la capacidad de un elemento flexible para alterar sus dimensiones y llenar el espacio disponible. Los elementos flexibles pueden ser estirados para utilizar el espacio disponible proporcional a su factor de crecimiento flexible o su factor de contracción flexible para evitar desbordamiento.
 
-Este tipo de unidad es más flexible y se expresa en forma de porcentaje (%). Me refiero a su flexibilidad porque se adapta de acuerdo al tamaño de otro valor de referencia. Por ejemplo, en el mundo real tu hermano y tú tienen dos balones de futbol. Un balón es grande y el otro es pequeño, pero a cada uno le corresponde la mitad de cada uno de esos balones (50%). No importa el tamaño del balón, porque igual siempre vas a ser dueño del 50%. Entonces, si el balón grande redujera su tamaño, igual tendrías el 50% de este. Ahora aplica este ejemplo a los distintos tipos de resolución de pantalla. Ahora bien, las unidades relativas se subdividen en 2 grupos:
+Valor inicial	como cada una de las propiedades de los elementos shorthand:
 
-    -Relativas a la tipografía
-    -Relativas al viewport
+    flex-grow: 0
+    flex-shrink: 1
+    flex-basis: auto
 
-Relativas a la tipografía
+Applies to	flex, incluidos los pseudoelementos de flujo
+Heredable	no
+Valor calculado	acomo cada una de las propiedades de los elementos shorthand:
 
-    em: Relativo al tamaño de fuente de un elemento. Si, por ejemplo, utilizamos 3em (font-size: 3em); mi texto aumentará 3 veces su tamaño en relación al tamaño que se esté utilizando por defecto.
-    ex: Aumenta el tamaño de mi letra en cuanto a su altura.
-    Rem: Es igual a (em) con la diferencia de que este actúa en la raíz. O sea, en la letra que esté utilizando por defecto.
+    flex-grow: como se especifica
+    flex-shrink: como se especifica
+    flex-basis: como se especifica, pero con longitudes relativas convertidas en longitudes absolutas
 
-Relativas al viewport - ventana
+Animation type	como cada una de las propiedades de los elementos shorthand:
 
-    -vw: Porcentaje relativo a la anchura del viewport.
-    -vh: Porcentaje relativo a la altura del viewport.
-    -vmin: Entre vw y vh toma el que tenga menor valor.
-    -vmax: Entre vw y vh toma el que tenga mayor valor.
+    flex-grow: a number
+    flex-shrink: a number
+    flex-basis: a length, percentage or calc();
 
-Las unidades relativas al viewport son muy importantes y se deben tomar en cuenta cuando realizamos una web para varios tipos de resolución de pantalla. Combinando esta serie de medidas con otros elementos que podemos agregar a nuestra sintaxis conseguiremos realizar un excelente trabajo. 
+flex-basis
+La propiedad de CSS flex-basis especifíca la base flexible, la cual es el tamaño inicial de un elemento flexible. Ésta propiedad determina el tamaño de una caja de contenidos a no ser que se haya especificado de otra forma usando box-sizing.
+
+Valor inicial	auto
+Se aplica a elementos flexibles, incluidos los pseudoelementos de flujo
+Heredable	no
+Los porcentajes se refieren al tamaño principal interno del contenedor flexible
+Valor calculado	como se especifica, pero con longitudes relativas convertidas en longitudes absolutas
+Animation type	
+
+/* Especificar <'width'> */
+flex-basis: 10em;
+flex-basis: 3px;
+flex-basis: auto;
+
+/* Palabras clave de dimensionamiento intrínseco */
+flex-basis: fill;
+flex-basis: max-content;
+flex-basis: min-content;
+flex-basis: fit-content;
+
+/* Tamaño automático basado en el contenido del elemento flexible */
+flex-basis: content;
+
+/* Global values */
+flex-basis: inherit;
+flex-basis: initial;
+flex-basis: unset;
+
+    width
+
+    Definido por un número seguido de una unidad absoluta tal como px, mm o pt, o un porcentaje del tamaño principal de un contenedor flexible padre. Los valores negativos no son válidos.
+    content
+
+    Indica el dimensionamiento automático, basado en el contenido del elemento flexible.
 
 
+flex-direction
+
+La propiedad CSS flex-direction especifica cómo colocar los objetos flexibles en el contenedor flexible definiendo el eje principal y la dirección (normal o al revés).
+Tenga en cuenta que el valor de row y row-reverse se verán afectados por la direccionalidad del contenedor flexible. Si su atributo dir es ltr, row representa el eje horizontal orientado de izquierda a derecha, y row-reverse desde la derecha hacia la izquierda; si el atributo dir es rtl, row representa el eje orientado de derecha a izquierda, y row-reverse de izquierda a derecha.
+
+    Valores
+
+    Se aceptan los siguientes valores:
+
+    row
+
+        El eje principal del contenedor flexible está definido para ser el mismo que la dirección del texto. Los puntos principales de inicio y final son los mismos que la dirección del contenido.
+    row-reverse
+
+        Se comporta igual que row pero los puntos principales de inicio y final son intercambiados.
+    column
+
+        El eje principal del contenedor flexible es el mismo que el eje del bloque. Los puntos principales de inicio y final son los mismos que los puntos de antes y después del modo escritura.
+    column-reverse
+
+        Se comporta igual que column pero los puntos principales de inicio y final son intercambiados.
+        
+flex-flow
+        La propiedad  flex-flow es una propiedad abreviada para:
+
+    flex-direction  Especificar la dirección de los elementos flexibles
+    flex-wrap Especificar si los artículos flexibles deben envolver o no
+
+Nota: Si los elementos no son elementos flexibles, la propiedad flex-flow no tiene ningún efecto.
+
+La propiedad flex-flow es el formato resumido para inicializar las propiedades "flex-direction" y "flex-wrap".
+
+flex-grow
+
+La propiedad flex-grow de CSS especifica el factor de crecimiento de un elemento flexible (que tiene asignado display:flex), en su dirección principal. El factor de crecimiento especifica qué cantidad del espacio restante dentro del contenedor flexible, debería ocupar el item en cuestión.
+
+La dirección principal puede ser la altura o el ancho del elemento, dependiendo del valor de flex-direction.
+Ver <number>. Los valores negativos no son válidos.
+
+flex-shrink
+
+La propiedad CSS flex-shrink especifica el factor de contracción de un flex item. Los flex items se encogerán para llenar el contenedor de acuerdo a su número flex-shrink , cuando el tamaño por defecto de los flex items sea mayor al de su contenedor flex container.
+    Heredable	no
+    Valor calculado	como se especifica
+    Animation type	a number
 
 
-Unidades absolutas
+flex-wrap
 
-Como su nombre lo indica, son unidades que están completamente definidas. Esto quiere decir que su valor no depende de otro valor de referencia. En este grupo encontramos los siguientes elementos:
+La propiedad flex-wrap de CSS especifica si los elementos "hijos" son obligados a permanecer en una misma línea o pueden fluir en varias líneas. Si la cobertura (wrap) está permitida, esta propiedad también te permite controlar la dirección en la cual serán apilados los elementos.
+    Valor inicial	nowrap
+    Applies to	flex containers
+    Heredable	no
+    Valor calculado	como se especifica
+    Animation type	discrete
 
-    -cm: Aumenta el tamaño de nuestro texto o elemento en centímetros
-    -mm: Aumenta el tamaño de nuestro texto o elemento en milímetros
-    -in: Aumenta el tamaño de nuestro texto o elemento en pulgadas (1in = 96px = 2.54cm)
-    -px: Aumenta el tamaño de nuestro texto en pixeles (Dependiendo del dispositivo, este elemento se clasifica también en Unidades Relativas. Aunque también depende  de la versión de CSS que se maneje)
-    -pt: Aumenta el tamaño de nuestro texto en puntos (1pt = 1/72 de 1in)
-    -pc: Aumenta el tamaño de nuestro texto en picas (1pc = 12 puntos aprox)
+
+nowrap
+
+    Los elementos flex son distribuidos en una sola línea, lo cual puede llevar a que se desborde el contenedor flex. El valor cross-start es equivalente a start o before según el valor de flex-direction.
+wrap
+
+    Los elementos flex son colocados en varias líneas. El valor cross-start equivale a start o before dependiendo del valor flex-direction y cross-end implicaría lo opuesto a lo especificado por cross-start.
+wrap-reverse
+
+    Actúa como wrap pero cross-start y cross-end están intercambiados.
 
 
 
