@@ -1,123 +1,37 @@
 <!-- 
-grid
+@media queries
 
-La propiedad CSS grid es un shorthand que permite definir todas las propiedades grid explícitas (grid-template-rows, grid-template-columns, y grid-template-areas), implícitas (grid-auto-rows, grid-auto-columns, y grid-auto-flow (en-US)), y relativas a gutter (grid-column-gap y grid-row-gap (en-US)) en una sola declaración.
+Las media queries (en español "consultas de medios") son útiles cuando deseas modificar tu página web o aplicación en función del tipo de dispositivo (como una impresora o una pantalla) o de características y parámetros específicos (como la resolución de la pantalla o el ancho del viewport del navegador).
 
-Valor inicial	as each of the properties of the shorthand:
+Se utilizan para:
 
-    grid-template-rows: none
-    grid-template-columns: none
-    grid-template-areas: none
-    grid-auto-rows: auto
-    grid-auto-columns: auto
-    grid-auto-flow (en-US): row
-    grid-column-gap: 0
-    grid-row-gap (en-US): 0
-    column-gap: normal
-    row-gap : normal
-Applies to	grid containers
-Heredable	no
-    Valor calculado	as each of the properties of the shorthand:
+    Aplicar estilos condicionales con las reglas-at @media e @import de CSS.
+    Indicar medios específicos en los elementos <link>, <source> y otros elementos HTML.
+    Testear y monitorizar los estados de los medios usando los métodos de javascript Window.matchMedia() y MediaQueryList.addListener().
+Media Types
 
-    grid-template-rows:como se especifica, pero con longitudes relativas convertidas en longitudes absolutas
-    grid-template-columns: como se especifica, pero con longitudes relativas convertidas en longitudes absolutas
-    grid-template-areas: como se especifica
-    grid-auto-rows: el porcentaje como se especifica o la longitud absoluta
-    grid-auto-columns: el porcentaje como se especifica o la longitud absoluta
-    grid-auto-flow (en-US): como se especifica
-    grid-column-gap: el porcentaje como se especifica o la longitud absoluta
-    grid-row-gap (en-US): el porcentaje como se especifica o la longitud absoluta
-    column-gap: as specified, with <length>s hecho cálculo absoluto y normal a cero excepto en elementos de varias columnas
-    row-gap (en-US): as specified, with <length>s hecho cálculo absoluto y normal a cero excepto en elementos de varias columnas
+Los Media Types (tipos de medios) describen la categoría general de un dispositivo. Excepto cuando se utilizan los operadores lógicos not o only, el tipo de medio es opcional y será interpretada como all.
 
-Grid areas
+all
 
-Mediante los Grids por área es posible indicar el nombre y posición concreta de cada área de una cuadrícula. Para ello utilizaremos la propiedad grid-template-areas en nuestro contenedor padre, donde debemos especificar el orden de las áreas en la cuadrícula. Posteriormente, en cada ítem hijo, utilizamos la propiedad grid-area para indicar el nombre del área del que se trata y que el navegador pueda identificarlas:
-    grid-template-areas 	Indica la disposición de las áreas en el grid. Cada texto entre comillas simboliza una fila.
-    grid-area 	Indica el nombre del área. Se usa sobre ítems hijos del grid.
+    Apto para todos los dispositivos.
+print
 
-Si un elemento de cuadrícula se coloca en una columna que no tiene un tamaño explícito de columnas de plantilla de cuadrícula, se crean pistas de cuadrícula implícitas para contenerlo. Esto puede suceder al colocarse explícitamente en una columna que está fuera de rango o al crear columnas adicionales el algoritmo de colocación automática.
+    Destinado a material impreso y visualización de documentos en una pantalla en el modo de vista previa de impresión.
+screen
 
+    Destinado principalmente a las pantallas.
+speech
 
-grid-auto-flow
-La propiedad controla cómo funciona el algoritmo de colocación automática, especificando exactamente cómo los elementos colocados automáticamente fluyen hacia la cuadrícula.
-Values
+    Destinado a sintetizadores de voz.
 
-row
-Los artículos se colocan llenando cada fila a su vez, agregando nuevas filas según sea necesario. Si no se proporciona ni la fila ni la columna, se asume la fila.
-column
+Propiedades max-width y min-width
 
-    Los artículos se colocan llenando cada columna a su vez, agregando nuevas columnas según sea necesario.
-dense
+Hay dos cosas que debes tener en cuenta al crear media queries para diferentes tamaños de pantalla: las propiedades max-width y min-width.
+Cuando se pasa una propiedad max-width a un media query, CSS lo interpreta como un ancho que comienza en cero – eso si aún no se ha establecido una propiedad de ancho mínimo. Pronto llegaremos a eso.
 
-    "dense" El algoritmo de empaquetado intenta llenar los agujeros antes en la cuadrícula, si aparecen elementos más pequeños más tarde. Esto puede hacer que los artículos parezcan desordenados, cuando al hacerlo se llenarían los huecos que dejan los artículos más grandes.
+Una vez que la propiedad max-width tiene un valor asignado, todos los estilos dentro de esa media query particular se aplicarán a cualquier dispositivo cuyo tamaño de pantalla abaque desde 0px hasta el ancho máximo especificado.
 
-
- Si se omite, se usa un algoritmo "disperso", en el que el algoritmo de ubicación solo se mueve "hacia adelante" en la cuadrícula al colocar elementos, nunca retrocede para llenar los huecos. Esto garantiza que todos los elementos colocados automáticamente aparezcan "en orden", incluso si esto deja huecos que podrían haberse llenado con elementos posteriores.
-
-grid-auto-rows
-
- La propiedad CSS especifica el tamaño de una pista de fila de cuadrícula creada implícitamente o un patrón de pistas.
-Si un elemento de cuadrícula se coloca en una fila que no tiene un tamaño explícito de grid-template-rows, se crean pistas de cuadrícula implícitas para contenerlo. Esto puede suceder al colocarse explícitamente en una fila que está fuera de rango o al crear filas adicionales el algoritmo de colocación automática.
-
-grid-column
-The grid-column CSS La propiedad abreviada especifica el tamaño y la ubicación de un elemento de cuadrícula dentro de un grid column contribuyendo con una línea, un tramo o nada (automático) a su ubicación en la cuadrícula, especificando así el borde de inicio y final en línea de su grid area.
-
-    grid-column-end
-    grid-column-start
-
-    grid-column-end
-    La propiedad CSS especifica la posición final de un elemento de la cuadrícula dentro de la columna de la cuadrícula al contribuir con una línea, un tramo o nada (automático) a su ubicación en la cuadrícula, especificando así el borde final del bloque de su área de cuadrícula.
-
-    grid-column-start
-    La propiedad CSS especifica la posición de inicio de un elemento de la cuadrícula dentro de la columna de la cuadrícula al contribuir con una línea, un tramo o nada (automático) a su ubicación en la cuadrícula. Esta posición de inicio define el borde de inicio de bloque del área de cuadrícula.
-
-
-grid-row
-
-La propiedad abreviada de CSS especifica el tamaño y la ubicación de un elemento de cuadrícula dentro de una fila de cuadrícula contribuyendo con una línea, un tramo o nada (automático) a su ubicación en la cuadrícula, especificando así el borde de inicio y final en línea de su área de cuadrícula.
-
-    Esta propiedad es una abreviatura de las siguientes propiedades CSS:
-
-     grid-row-end
-     grid-row-start
-Si se dan dos valores de <grid-line>, se separan por /. Grid-row-start longhand se establece en el valor antes de la barra inclinada, y grid-row-end longhand se establece en el valor después de la barra inclinada.
-
-Cada valor de <grid-line> se puede especificar como:
-
-     ya sea la palabra clave auto
-     o un valor <custom-ident>
-     o un valor <entero>
-     o tanto <custom-ident> como <integer>, separados por un espacio
-     o la palabra clave span junto con un <custom-ident> o un <integer> o ambos.
-
-grid-template
-
-La propiedad CSS es una propiedad abreviada para definir columnas de cuadrícula, filas de cuadrícula y áreas de cuadrícula.
-Initial value	as each of the properties of the shorthand:
-
-    grid-template-columns: none
-    grid-template-rows: none
-    grid-template-areas: none
-
-Aplica to	grid containers
-Inherited	no
-Porcentajes según cada una de las propiedades de la taquigrafía:
-
-    grid-template-columns: refer to corresponding dimension of the content area
-    grid-template-rows: refer to corresponding dimension of the content area
-
-grid-template-areas
-
-La propiedad CSS especifica áreas de cuadrícula nombradas, estableciendo las celdas en la cuadrícula y asignándoles nombres.
-Esas áreas no están asociadas con ningún elemento de cuadrícula en particular, pero se puede hacer referencia a ellas desde las propiedades de ubicación de la cuadrícula.grid-row-start, grid-row-end, grid-column-start, grid-column-end, y sus abreviaturas grid-row, grid-column, and grid-area.
-
-
-none
-
-      El contenedor de cuadrícula no define ninguna área de cuadrícula con nombre.
-<string>+
-
-   Se crea una fila para cada cadena separada enumerada y se crea una columna para cada celda de la cadena. Múltiples tokens de celda con el mismo nombre dentro y entre las filas crean un área de cuadrícula única con nombre que abarca las celdas de cuadrícula correspondientes. A menos que esas celdas formen un rectángulo, la declaración no es válida.
+La propiedad min-width, por otro lado, toma el valor inicial que le has asignado y aplica los estilos dentro de la regla del media query hasta que se proporcione el siguiente max-width is provided
 
  -->
