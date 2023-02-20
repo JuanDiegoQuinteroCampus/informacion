@@ -1,131 +1,123 @@
 <!-- 
-FLEX
-La propiedad CSS flex es una propiedad resumida que indica la capacidad de un elemento flexible para alterar sus dimensiones y llenar el espacio disponible. Los elementos flexibles pueden ser estirados para utilizar el espacio disponible proporcional a su factor de crecimiento flexible o su factor de contracción flexible para evitar desbordamiento.
+grid
 
-Valor inicial	como cada una de las propiedades de los elementos shorthand:
+La propiedad CSS grid es un shorthand que permite definir todas las propiedades grid explícitas (grid-template-rows, grid-template-columns, y grid-template-areas), implícitas (grid-auto-rows, grid-auto-columns, y grid-auto-flow (en-US)), y relativas a gutter (grid-column-gap y grid-row-gap (en-US)) en una sola declaración.
 
-    flex-grow: 0
-    flex-shrink: 1
-    flex-basis: auto
+Valor inicial	as each of the properties of the shorthand:
 
-Applies to	flex, incluidos los pseudoelementos de flujo
+    grid-template-rows: none
+    grid-template-columns: none
+    grid-template-areas: none
+    grid-auto-rows: auto
+    grid-auto-columns: auto
+    grid-auto-flow (en-US): row
+    grid-column-gap: 0
+    grid-row-gap (en-US): 0
+    column-gap: normal
+    row-gap : normal
+Applies to	grid containers
 Heredable	no
-Valor calculado	acomo cada una de las propiedades de los elementos shorthand:
+    Valor calculado	as each of the properties of the shorthand:
 
-    flex-grow: como se especifica
-    flex-shrink: como se especifica
-    flex-basis: como se especifica, pero con longitudes relativas convertidas en longitudes absolutas
+    grid-template-rows:como se especifica, pero con longitudes relativas convertidas en longitudes absolutas
+    grid-template-columns: como se especifica, pero con longitudes relativas convertidas en longitudes absolutas
+    grid-template-areas: como se especifica
+    grid-auto-rows: el porcentaje como se especifica o la longitud absoluta
+    grid-auto-columns: el porcentaje como se especifica o la longitud absoluta
+    grid-auto-flow (en-US): como se especifica
+    grid-column-gap: el porcentaje como se especifica o la longitud absoluta
+    grid-row-gap (en-US): el porcentaje como se especifica o la longitud absoluta
+    column-gap: as specified, with <length>s hecho cálculo absoluto y normal a cero excepto en elementos de varias columnas
+    row-gap (en-US): as specified, with <length>s hecho cálculo absoluto y normal a cero excepto en elementos de varias columnas
 
-Animation type	como cada una de las propiedades de los elementos shorthand:
+Grid areas
 
-    flex-grow: a number
-    flex-shrink: a number
-    flex-basis: a length, percentage or calc();
+Mediante los Grids por área es posible indicar el nombre y posición concreta de cada área de una cuadrícula. Para ello utilizaremos la propiedad grid-template-areas en nuestro contenedor padre, donde debemos especificar el orden de las áreas en la cuadrícula. Posteriormente, en cada ítem hijo, utilizamos la propiedad grid-area para indicar el nombre del área del que se trata y que el navegador pueda identificarlas:
+    grid-template-areas 	Indica la disposición de las áreas en el grid. Cada texto entre comillas simboliza una fila.
+    grid-area 	Indica el nombre del área. Se usa sobre ítems hijos del grid.
 
-flex-basis
-La propiedad de CSS flex-basis especifíca la base flexible, la cual es el tamaño inicial de un elemento flexible. Ésta propiedad determina el tamaño de una caja de contenidos a no ser que se haya especificado de otra forma usando box-sizing.
-
-Valor inicial	auto
-Se aplica a elementos flexibles, incluidos los pseudoelementos de flujo
-Heredable	no
-Los porcentajes se refieren al tamaño principal interno del contenedor flexible
-Valor calculado	como se especifica, pero con longitudes relativas convertidas en longitudes absolutas
-Animation type	
-
-/* Especificar <'width'> */
-flex-basis: 10em;
-flex-basis: 3px;
-flex-basis: auto;
-
-/* Palabras clave de dimensionamiento intrínseco */
-flex-basis: fill;
-flex-basis: max-content;
-flex-basis: min-content;
-flex-basis: fit-content;
-
-/* Tamaño automático basado en el contenido del elemento flexible */
-flex-basis: content;
-
-/* Global values */
-flex-basis: inherit;
-flex-basis: initial;
-flex-basis: unset;
-
-    width
-
-    Definido por un número seguido de una unidad absoluta tal como px, mm o pt, o un porcentaje del tamaño principal de un contenedor flexible padre. Los valores negativos no son válidos.
-    content
-
-    Indica el dimensionamiento automático, basado en el contenido del elemento flexible.
+Si un elemento de cuadrícula se coloca en una columna que no tiene un tamaño explícito de columnas de plantilla de cuadrícula, se crean pistas de cuadrícula implícitas para contenerlo. Esto puede suceder al colocarse explícitamente en una columna que está fuera de rango o al crear columnas adicionales el algoritmo de colocación automática.
 
 
-flex-direction
+grid-auto-flow
+La propiedad controla cómo funciona el algoritmo de colocación automática, especificando exactamente cómo los elementos colocados automáticamente fluyen hacia la cuadrícula.
+Values
 
-La propiedad CSS flex-direction especifica cómo colocar los objetos flexibles en el contenedor flexible definiendo el eje principal y la dirección (normal o al revés).
-Tenga en cuenta que el valor de row y row-reverse se verán afectados por la direccionalidad del contenedor flexible. Si su atributo dir es ltr, row representa el eje horizontal orientado de izquierda a derecha, y row-reverse desde la derecha hacia la izquierda; si el atributo dir es rtl, row representa el eje orientado de derecha a izquierda, y row-reverse de izquierda a derecha.
+row
+Los artículos se colocan llenando cada fila a su vez, agregando nuevas filas según sea necesario. Si no se proporciona ni la fila ni la columna, se asume la fila.
+column
 
-    Valores
+    Los artículos se colocan llenando cada columna a su vez, agregando nuevas columnas según sea necesario.
+dense
 
-    Se aceptan los siguientes valores:
-
-    row
-
-        El eje principal del contenedor flexible está definido para ser el mismo que la dirección del texto. Los puntos principales de inicio y final son los mismos que la dirección del contenido.
-    row-reverse
-
-        Se comporta igual que row pero los puntos principales de inicio y final son intercambiados.
-    column
-
-        El eje principal del contenedor flexible es el mismo que el eje del bloque. Los puntos principales de inicio y final son los mismos que los puntos de antes y después del modo escritura.
-    column-reverse
-
-        Se comporta igual que column pero los puntos principales de inicio y final son intercambiados.
-        
-flex-flow
-        La propiedad  flex-flow es una propiedad abreviada para:
-
-    flex-direction  Especificar la dirección de los elementos flexibles
-    flex-wrap Especificar si los artículos flexibles deben envolver o no
-
-Nota: Si los elementos no son elementos flexibles, la propiedad flex-flow no tiene ningún efecto.
-
-La propiedad flex-flow es el formato resumido para inicializar las propiedades "flex-direction" y "flex-wrap".
-
-flex-grow
-
-La propiedad flex-grow de CSS especifica el factor de crecimiento de un elemento flexible (que tiene asignado display:flex), en su dirección principal. El factor de crecimiento especifica qué cantidad del espacio restante dentro del contenedor flexible, debería ocupar el item en cuestión.
-
-La dirección principal puede ser la altura o el ancho del elemento, dependiendo del valor de flex-direction.
-Ver <number>. Los valores negativos no son válidos.
-
-flex-shrink
-
-La propiedad CSS flex-shrink especifica el factor de contracción de un flex item. Los flex items se encogerán para llenar el contenedor de acuerdo a su número flex-shrink , cuando el tamaño por defecto de los flex items sea mayor al de su contenedor flex container.
-    Heredable	no
-    Valor calculado	como se especifica
-    Animation type	a number
+    "dense" El algoritmo de empaquetado intenta llenar los agujeros antes en la cuadrícula, si aparecen elementos más pequeños más tarde. Esto puede hacer que los artículos parezcan desordenados, cuando al hacerlo se llenarían los huecos que dejan los artículos más grandes.
 
 
-flex-wrap
+ Si se omite, se usa un algoritmo "disperso", en el que el algoritmo de ubicación solo se mueve "hacia adelante" en la cuadrícula al colocar elementos, nunca retrocede para llenar los huecos. Esto garantiza que todos los elementos colocados automáticamente aparezcan "en orden", incluso si esto deja huecos que podrían haberse llenado con elementos posteriores.
 
-La propiedad flex-wrap de CSS especifica si los elementos "hijos" son obligados a permanecer en una misma línea o pueden fluir en varias líneas. Si la cobertura (wrap) está permitida, esta propiedad también te permite controlar la dirección en la cual serán apilados los elementos.
-    Valor inicial	nowrap
-    Applies to	flex containers
-    Heredable	no
-    Valor calculado	como se especifica
-    Animation type	discrete
+grid-auto-rows
+
+ La propiedad CSS especifica el tamaño de una pista de fila de cuadrícula creada implícitamente o un patrón de pistas.
+Si un elemento de cuadrícula se coloca en una fila que no tiene un tamaño explícito de grid-template-rows, se crean pistas de cuadrícula implícitas para contenerlo. Esto puede suceder al colocarse explícitamente en una fila que está fuera de rango o al crear filas adicionales el algoritmo de colocación automática.
+
+grid-column
+The grid-column CSS La propiedad abreviada especifica el tamaño y la ubicación de un elemento de cuadrícula dentro de un grid column contribuyendo con una línea, un tramo o nada (automático) a su ubicación en la cuadrícula, especificando así el borde de inicio y final en línea de su grid area.
+
+    grid-column-end
+    grid-column-start
+
+    grid-column-end
+    La propiedad CSS especifica la posición final de un elemento de la cuadrícula dentro de la columna de la cuadrícula al contribuir con una línea, un tramo o nada (automático) a su ubicación en la cuadrícula, especificando así el borde final del bloque de su área de cuadrícula.
+
+    grid-column-start
+    La propiedad CSS especifica la posición de inicio de un elemento de la cuadrícula dentro de la columna de la cuadrícula al contribuir con una línea, un tramo o nada (automático) a su ubicación en la cuadrícula. Esta posición de inicio define el borde de inicio de bloque del área de cuadrícula.
 
 
-nowrap
+grid-row
 
-    Los elementos flex son distribuidos en una sola línea, lo cual puede llevar a que se desborde el contenedor flex. El valor cross-start es equivalente a start o before según el valor de flex-direction.
-wrap
+La propiedad abreviada de CSS especifica el tamaño y la ubicación de un elemento de cuadrícula dentro de una fila de cuadrícula contribuyendo con una línea, un tramo o nada (automático) a su ubicación en la cuadrícula, especificando así el borde de inicio y final en línea de su área de cuadrícula.
 
-    Los elementos flex son colocados en varias líneas. El valor cross-start equivale a start o before dependiendo del valor flex-direction y cross-end implicaría lo opuesto a lo especificado por cross-start.
-wrap-reverse
+    Esta propiedad es una abreviatura de las siguientes propiedades CSS:
 
-    Actúa como wrap pero cross-start y cross-end están intercambiados.
+     grid-row-end
+     grid-row-start
+Si se dan dos valores de <grid-line>, se separan por /. Grid-row-start longhand se establece en el valor antes de la barra inclinada, y grid-row-end longhand se establece en el valor después de la barra inclinada.
+
+Cada valor de <grid-line> se puede especificar como:
+
+     ya sea la palabra clave auto
+     o un valor <custom-ident>
+     o un valor <entero>
+     o tanto <custom-ident> como <integer>, separados por un espacio
+     o la palabra clave span junto con un <custom-ident> o un <integer> o ambos.
+
+grid-template
+
+La propiedad CSS es una propiedad abreviada para definir columnas de cuadrícula, filas de cuadrícula y áreas de cuadrícula.
+Initial value	as each of the properties of the shorthand:
+
+    grid-template-columns: none
+    grid-template-rows: none
+    grid-template-areas: none
+
+Aplica to	grid containers
+Inherited	no
+Porcentajes según cada una de las propiedades de la taquigrafía:
+
+    grid-template-columns: refer to corresponding dimension of the content area
+    grid-template-rows: refer to corresponding dimension of the content area
+
+grid-template-areas
+
+La propiedad CSS especifica áreas de cuadrícula nombradas, estableciendo las celdas en la cuadrícula y asignándoles nombres.
+Esas áreas no están asociadas con ningún elemento de cuadrícula en particular, pero se puede hacer referencia a ellas desde las propiedades de ubicación de la cuadrícula.grid-row-start, grid-row-end, grid-column-start, grid-column-end, y sus abreviaturas grid-row, grid-column, and grid-area.
 
 
+none
+
+      El contenedor de cuadrícula no define ninguna área de cuadrícula con nombre.
+<string>+
+
+   Se crea una fila para cada cadena separada enumerada y se crea una columna para cada celda de la cadena. Múltiples tokens de celda con el mismo nombre dentro y entre las filas crean un área de cuadrícula única con nombre que abarca las celdas de cuadrícula correspondientes. A menos que esas celdas formen un rectángulo, la declaración no es válida.
 
  -->
